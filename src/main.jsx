@@ -10,9 +10,9 @@ import {
 } from "@elevenlabs/react";
 import "./styles.css";
 
-const AGENT_ID = "agent_7201m4yvdfb6evpasg19cme0d2ew";
+const AGENT_ID = "agent_2801m56hzc3xe96rqw8hygdrst6a";
 const WELCOME_MESSAGE =
-  "Hey, it’s the Fitness Authority Coach. What are you working through in your business today?";
+  "Hey, it’s Rick and ChosenAI. What are you working through in your business today?";
 
 function cleanMessage(message) {
   if (!message || typeof message.message !== "string") return null;
@@ -61,7 +61,7 @@ function pdfFilename() {
   const mm = String(date.getMonth() + 1).padStart(2, "0");
   const dd = String(date.getDate()).padStart(2, "0");
 
-  return `Fitness-Authority-Coach-Session-${yyyy}-${mm}-${dd}.pdf`;
+  return `ChosenAI-Coaching-Session-${yyyy}-${mm}-${dd}.pdf`;
 }
 
 function imageUrlToDataUrl(url) {
@@ -112,7 +112,7 @@ async function createTranscriptPdf(entries, conversationId) {
       doc.setFont("helvetica", "bold");
       doc.setFontSize(8.5);
       doc.setTextColor(...gray);
-      doc.text("THE FITNESS AUTHORITY COACH", marginX, 30);
+      doc.text("ChosenAI", marginX, 30);
     }
 
     y = 62;
@@ -173,7 +173,7 @@ async function createTranscriptPdf(entries, conversationId) {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9.5);
   doc.setTextColor(...gray);
-  doc.text("The Fitness Authority Coach", marginX + 86, y + 45);
+  doc.text("ChosenAI", marginX + 86, y + 45);
 
   y += 92;
 
@@ -210,7 +210,7 @@ async function createTranscriptPdf(entries, conversationId) {
 
   entries.forEach((entry) => {
     const isUser = entry.role === "user";
-    const label = isUser ? "YOU" : "FITNESS AUTHORITY COACH";
+    const label = isUser ? "YOU" : "ChosenAI";
 
     ensureRoom(46);
 
@@ -265,7 +265,7 @@ async function createTranscriptPdf(entries, conversationId) {
     doc.setTextColor(...gray);
 
     doc.text(
-      `The Fitness Authority Coach | Page ${pageNumber} of ${totalPages}`,
+      `ChosenAI | Page ${pageNumber} of ${totalPages}`,
       pageWidth / 2,
       pageHeight - 28,
       { align: "center" }
@@ -458,11 +458,11 @@ function CoachApp({
     <main className="shell">
       <section
         className="coach-card"
-        aria-label="The Fitness Authority Coach session"
+        aria-label="ChosenAI Coaching Session"
       >
         <img
           src="/fac-logo.png"
-          alt="The Fitness Authority Coach"
+          alt="ChosenAI"
           className="fac-logo"
         />
 
