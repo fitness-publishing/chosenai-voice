@@ -12,7 +12,7 @@ import "./styles.css";
 
 const AGENT_ID = "agent_2801m56hzc3xe96rqw8hygdrst6a";
 const WELCOME_MESSAGE =
-  "Hey, it’s Rick and ChosenAI. What are you working through in your business today?";
+  "Welcome. This is Rick and ChosenAI. Ask me anything about CHOSEN, or tell me what you’re working through in your business and let’s talk it through.";
 
 function cleanMessage(message) {
   if (!message || typeof message.message !== "string") return null;
