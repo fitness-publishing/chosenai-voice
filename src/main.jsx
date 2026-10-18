@@ -11,13 +11,45 @@ import {
 import "./styles.css";
 
 const AGENT_ID = "agent_2801m56hzc3xe96rqw8hygdrst6a";
+const LOGO_URL = "/chosenai-logo.png?v=chosenai-20261018";
 const WELCOME_MESSAGE =
   "Welcome. This is Rick and ChosenAI. Ask me anything about CHOSEN, or tell me what you’re working through in your business and let’s talk it through.";
+
+function sanitizeTranscriptText(value) {
+  let text = String(value ?? "");
+
+  text = text.replace(/<sources>[\s\S]*?<\/sources>/gi, "");
+
+  const lines = text.split(/\r?\n/);
+  const cleanedLines = [];
+  let insideSources = false;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    const sourceTag = /^<\/?[^>]*ources[^>]*>$/i.test(trimmed);
+
+    if (sourceTag) {
+      insideSources = !/^<\//.test(trimmed);
+      continue;
+    }
+
+    if (insideSources) continue;
+
+    if (/^(chunk|doc):/i.test(trimmed)) continue;
+
+    cleanedLines.push(line);
+  }
+
+  return cleanedLines
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
 
 function cleanMessage(message) {
   if (!message || typeof message.message !== "string") return null;
 
-  const text = message.message.trim();
+  const text = sanitizeTranscriptText(message.message);
   if (!text) return null;
 
   const role =
@@ -159,7 +191,7 @@ async function createTranscriptPdf(entries, conversationId) {
   };
 
   try {
-   const logoData = await imageUrlToDataUrl("/chosenai-logo.png");
+   const logoData = await imageUrlToDataUrl(LOGO_URL);
     doc.addImage(logoData, "PNG", marginX, y, 68, 68);
   } catch (error) {
     console.warn("Logo could not be added to PDF.", error);
@@ -461,7 +493,7 @@ function CoachApp({
         aria-label="ChosenAI Coaching Session"
       >
         <img
-          src="/chosenai-logo.png"
+          src={LOGO_URL}
           alt="ChosenAI"
           className="fac-logo"
         />
