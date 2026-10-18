@@ -159,7 +159,7 @@ async function createTranscriptPdf(entries, conversationId) {
   };
 
   try {
-    const logoData = await imageUrlToDataUrl("/fac-logo.png");
+   const logoData = await imageUrlToDataUrl("/chosenai-logo.png");
     doc.addImage(logoData, "PNG", marginX, y, 68, 68);
   } catch (error) {
     console.warn("Logo could not be added to PDF.", error);
