@@ -461,7 +461,7 @@ function CoachApp({
         aria-label="ChosenAI Coaching Session"
       >
         <img
-          src="/fac-logo.png"
+          src="/chosenai-logo.png"
           alt="ChosenAI"
           className="fac-logo"
         />
@@ -496,7 +496,7 @@ function CoachApp({
                       <span className="message-label">
                         {entry.role === "user"
                           ? "You"
-                          : "Fitness Authority Coach"}
+                          : "ChosenAI"}
                       </span>
                       <span className="message-text">{entry.text}</span>
                     </div>
