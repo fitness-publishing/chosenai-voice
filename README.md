@@ -1,4 +1,4 @@
-# The Fitness Authority Coach — Instant Start Voice + Text
+# ChosenAI — Instant Start Voice + Text
 
 This version removes the separate "Start Coaching Session" gateway.
 
